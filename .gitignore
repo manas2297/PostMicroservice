@@ -1,0 +1,9 @@
+node_modules
+node_modules/
+*/node_modules/
+*/node_modules/*
+./comments/node_modules
+eventbus/node_modules
+moderation/node_modules
+posts/node_modules
+query/node_modules
