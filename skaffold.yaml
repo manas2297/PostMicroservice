@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: manas2297/client
+      context: client
+      docker:
+        dockerfile: dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.js'
+          dest: .
+    - image: manas2297/comments
+      context: comments
+      docker:
+        dockerfile: dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+          dest: .
+    - image: manas2297/event-bus
+      context: event-bus
+      docker:
+        dockerfile: dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+          dest: .
+    - image: manas2297/moderation
+      context: moderation
+      docker:
+        dockerfile: dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+          dest: .
+    - image: manas2297/posts
+      context: posts
+      docker:
+        dockerfile: dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+          dest: .
+    - image: manas2297/query
+      context: query
+      docker:
+        dockerfile: dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+          dest: .
